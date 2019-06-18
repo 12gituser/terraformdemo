@@ -76,7 +76,7 @@ resource "aws_security_group" "public_sg" {
   }
 }
 
-#launch template 
+#launch template
 resource "aws_launch_template" "far" {
   name = "far"
 
@@ -87,7 +87,7 @@ resource "aws_launch_template" "far" {
       volume_size = 20
     }
   }
-  
+
   image_id               = "${var.dev_ami}"
   instance_type = "${var.dev_instance_type}"
   monitoring {
@@ -119,3 +119,6 @@ resource "aws_autoscaling_group" "far" {
 
 }
 
+output "aws_isntance_public_dns"{
+    value = "${aws_instance.nginx.public.dns}"
+}
